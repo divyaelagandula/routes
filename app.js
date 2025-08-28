@@ -1,14 +1,13 @@
 const express=require("express")
 const app=express()
-const bookrouter=require("./main/student")
-const coursesrouter=require("./main/course")
+const userroutes=require("./ecomers/user")
+const productroutes=require("./ecomers/product")
+const cartroutes=require("./ecomers/cart")
+app.use("/users",userroutes)
+app.use("/products",productroutes)
+app.use("/cart",cartroutes)
 app.get("/",(req,res)=>{
-  res.send("Welcome to the Student & Course Portal API!")
-})
-app.use("/students",bookrouter)
-app.use("/courses",coursesrouter)
-app.use((req,res)=>{
-  res.send("page not found")
+  res.send("<h1>WELCOME TO ECOMERSE WEBSITE</h1>")
 })
 app.listen(3000,()=>{
   console.log("server is running")
