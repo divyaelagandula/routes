@@ -1,16 +1,16 @@
-const express = require('express');
-const app = express();
-const bookroutes = require('./b_routes/book');
+const express=require("express")
+const app=express()
+const bookrouter=require("./main/student")
+const coursesrouter=require("./main/course")
+app.get("/",(req,res)=>{
+  res.send("Welcome to the Student & Course Portal API!")
+})
+app.use("/students",bookrouter)
+app.use("/courses",coursesrouter)
+app.use((req,res)=>{
+  res.send("page not found")
+})
+app.listen(3000,()=>{
+  console.log("server is running")
 
-
-app.use((req, res, next) => {
-  console.log(`${req.method} request made to ${req.url}`);
-  next();
-});
-
-app.use('/books', bookroutes);
-
-
-app.listen(3000, () => {
-  console.log('server is running on port 3000');
-});
+})
